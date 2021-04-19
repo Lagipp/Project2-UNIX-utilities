@@ -21,6 +21,8 @@ int main(int argc, char* argv[])
 	FILE *file;
 	int count = 0;
 	int m;
+	char filename[MAX];
+	char searchterm[MAX];
 	
 	if (argc < 2)
 	{
@@ -44,12 +46,20 @@ int main(int argc, char* argv[])
 	
 		for (m = 2; m < argc; m++)
 		{
+			strcpy(filename, argv[m]);
+			strcpy(searchterm, argv[1]);
+			
 			file = fopen(argv[m], "r");
 			if (file == NULL)
 			{
-				fprintf(stdout, "error: cannot open file '%s'\n", argv[m]);
+				fprintf(stdout, "error: cannot open file '%s'\n", filename);
 				exit(1);
 			}
+			
+			
+			/* PRINTING OUT THE FOUND WORDS */
+			
+			fprintf(stdout, "--- Printing out words with '%s' in them from file '%s':\n", searchterm, filename);
 			
 			while (fgets(buffer, MAX, file))
 			{
@@ -61,7 +71,7 @@ int main(int argc, char* argv[])
 			}
 		
 			fclose(file);
-			printf("found %d occurrences\n", count);
+			printf("--- Found %d occurrences!\n\n", count);
 			
 		}
 		
