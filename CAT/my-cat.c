@@ -10,6 +10,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#define MAX 128
 
 
 int main(int argc, char* argv[])
@@ -18,6 +20,7 @@ int main(int argc, char* argv[])
 	FILE* file;
 	char chr;
 	int q;
+	char filename[MAX];
 
 
 	if (argc == 1)
@@ -32,15 +35,17 @@ int main(int argc, char* argv[])
 	
 		/* expanded upon https://gist.github.com/pat36/d991eda0c270ed823a5d83c274c6157c */
 	
-	
+		strcpy(filename, argv[q]);
+			
 		file = fopen(argv[q], "r");
 		if (file == NULL)
 		{
-			fprintf(stdout, "my-cat: cannot open file\n");
+			fprintf(stdout, "\nmy-cat: cannot open file '%s'\n", filename);
 			exit(1);
 		}
 		
-		fprintf(stdout, "\n== DEBUG: before going into loop to get characters ==\n");
+		//strcpy(filename, argv[q]);
+		fprintf(stdout, "---- Printing out the contents of file '%s': \n", filename);
 		
 		while((chr = getc(file)) != EOF)
 		{
@@ -49,11 +54,9 @@ int main(int argc, char* argv[])
 		
 		fclose(file);
 		
-		fprintf(stdout, "\n###################################\n\n");
+		fprintf(stdout, "==== EOF for file '%s'\n", filename);
 		
 	}
 
-	
-	fprintf(stdout, "\n== DEBUG: end of program ==\n\n");
 	return 0;
 }
