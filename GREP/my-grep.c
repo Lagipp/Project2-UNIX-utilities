@@ -3,7 +3,7 @@
  * Project 2:			UNIX utilities
  * Nimi ja opiskelijanro:	Miika Pynttäri, 0563090
  * Päivämäärä:			19.4.2021
- * Yhteistyö ja lähteet:	 
+ * Yhteistyö ja lähteet:	https://www.codeproject.com/Questions/5268549/How-do-I-make-a-programme-in-C-which-mimic-the-gre
 */
 /*****************************************************************/
 
@@ -38,6 +38,9 @@ int main(int argc, char* argv[])
 	
 	if (argc > 2)
 	{
+	
+	/* expanded from the following source: https://www.codeproject.com/Questions/5268549/How-do-I-make-a-programme-in-C-which-mimic-the-gre */
+	
 	
 		for (m = 2; m < argc; m++)
 		{
