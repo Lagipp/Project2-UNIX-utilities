@@ -30,10 +30,10 @@ char* fileToArray(char input[MAX])
 		exit(1);
 	}
 	
-	file = fopen(filename, "r");
+	file = fopen(input, "r");
 	if (file == NULL)
 	{
-		fprintf(stdout, "error: couldn't open file '%s'\n\n", filename);
+		fprintf(stdout, "error: couldn't open file '%s'\n\n", input);
 		exit(1);
 	}
 	
@@ -125,8 +125,10 @@ int main(int argc, char* argv[])
 {
 	char input[MAX];
 	char output[MAX];
-	FILE *file_in;
+	//FILE *file_in;
 	FILE *file_out;
+	int g;
+	char *encoding;
 
 
 
@@ -146,10 +148,28 @@ int main(int argc, char* argv[])
 		exit(1);
 	}
 	
-	
+	for (g = 1; g < (argc -1); g++)		/* looping until all files have been compressed */
+	{
+		strcpy(input, argv[g]);
+		
+		char *array = fileToArray(input);
+		encoding = encode(&array[0]);
+		
+		fprintf(file_out, "%s", encoding);
+		
+		/*file_in = fopen(input, "r");
+		if (file_in == NULL)
+		{
+			fprintf(stdout, "error: cannot open file '%s'\n\n", input);
+			exit(1);
+		}
+		fclose(file_in)*/
+		
+	}
 	
 	
 
 	fprintf(stdout, "== DEBUG: end of program\n\n");
+	return 0;
 }
 
