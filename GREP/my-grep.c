@@ -19,14 +19,14 @@ int main(int argc, char* argv[])
 {
 	char buffer[MAX];
 	FILE *file;
-	int count = 0;
+	int count;
 	int m;
 	char filename[MAX];
 	char searchterm[MAX];
 	
 	if (argc < 2)
 	{
-		fprintf(stdout, "my-grep: <searchterm> <file1>, <file2>, ...\n");
+		fprintf(stdout, "INCORRECT USAGE, try: ./my-grep <searchterm> <file1>, <file2>, ...\n");
 		exit(1);
 	}
 	
@@ -46,7 +46,9 @@ int main(int argc, char* argv[])
 	
 		for (m = 2; m < argc; m++)
 		{
-			strcpy(filename, argv[m]);
+			count = 0;				/* resetting the value of count */
+			
+			strcpy(filename, argv[m]);		/* saving the parameters into variables for easier print messages */
 			strcpy(searchterm, argv[1]);
 			
 			file = fopen(argv[m], "r");
@@ -63,7 +65,7 @@ int main(int argc, char* argv[])
 			
 			while (fgets(buffer, MAX, file))
 			{
-				if (strstr(buffer, argv[1]))
+				if (strstr(buffer, argv[1]))		/* if the searchterm is found within a word, the word gets printed */
 				{
 					printf("%s", buffer);
 					count++;
