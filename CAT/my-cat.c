@@ -3,7 +3,7 @@
  * Project 2:			UNIX utilities
  * Nimi ja opiskelijanro:	Miika Pynttäri, 0563090
  * Päivämäärä:			19.4.2021
- * Yhteistyö ja lähteet:	https://gist.github.com/pat36/d991eda0c270ed823a5d83c274c6157c, 
+ * Yhteistyö ja lähteet:	 
 */
 /*****************************************************************/
 
@@ -33,7 +33,7 @@ int main(int argc, char* argv[])
 	for ( (q = 1); (q < argc); q++ )
 	{
 	
-		/* expanded upon https://gist.github.com/pat36/d991eda0c270ed823a5d83c274c6157c */
+		/* expanded from the source:  https://gist.github.com/pat36/d991eda0c270ed823a5d83c274c6157c */
 	
 		strcpy(filename, argv[q]);
 			
@@ -43,19 +43,18 @@ int main(int argc, char* argv[])
 			fprintf(stdout, "\nmy-cat: cannot open file '%s'\n", filename);
 			exit(1);
 		}
+
+		fprintf(stdout, "--- Printing out the contents of file '%s': \n", filename);
 		
-		//strcpy(filename, argv[q]);
-		fprintf(stdout, "---- Printing out the contents of file '%s': \n", filename);
 		
-		while((chr = getc(file)) != EOF)
+		while((chr = getc(file)) != EOF)		/* going through the file one char at a time */
 		{
-			printf("%c", chr);
+			printf("%c", chr);			/* printing out the file one character at a time */
 		}
 		
 		fclose(file);
 		
-		fprintf(stdout, "==== EOF for file '%s'\n", filename);
-		
+		fprintf(stdout, "--- EOF for file '%s'\n", filename);
 	}
 
 	return 0;
