@@ -14,6 +14,77 @@
 #define MAX 256
 
 
+char* fileToArray(char input[MAX])
+{
+	/* source used for function: https://stackoverflow.com/questions/19173442/reading-each-line-of-file-into-array/19174415 */
+	
+	FILE* file = NULL;	
+	
+	int allocated = 128;
+	int maxlength = 100;
+
+	char **words = (char **)malloc(sizeof(char*)*allocated);
+	if (words == NULL)
+	{
+		fprintf(stdout, "error: malloc() failed...\n\n");
+		exit(1);
+	}
+	
+	file = fopen(filename, "r");
+	if (file == NULL)
+	{
+		fprintf(stdout, "error: couldn't open file '%s'\n\n", filename);
+		exit(1);
+	}
+	
+	int q;
+	for (q = 0; ; q++)
+	{
+		int w;
+		
+		if (q >= allocated)
+		{
+			int new_size;
+			
+			new_size = allocated * 2;
+			words = (char **)realloc(words, sizeof(char*) * new_size);
+			
+			if (words == NULL)
+			{
+				fprintf(stdout, "error: realloc() failed...\n\n");
+				exit(1);
+			}
+			
+			allocated = new_size;
+		}
+		
+		words[q] = malloc(maxlength);
+		if (words[q] == NULL)
+		{
+			fprintf(stdout, "error: malloc() failed...\n\n");
+			exit(1);
+		}
+		
+		if (fgets(words[q], maxlength-1, file) == NULL)
+		{
+			break;
+		}
+		
+		
+		for (w = strlen(words[q]) -1; w >= 0 && (words[q][w] == '\n' || words[q][w] == '\r'); w--)
+		{
+			;
+		}
+		
+		words[q][w+1] = '\0';
+		
+	}
+	fclose(file);
+	return *words;
+}
+
+
+
 char* encode(char* source)
 {
 	/* source used for function: https://www.geeksforgeeks.org/run-length-encoding/ */
@@ -50,8 +121,6 @@ char* encode(char* source)
 }
 
 
-
-
 int main(int argc, char* argv[])
 {
 	char input[MAX];
@@ -69,6 +138,15 @@ int main(int argc, char* argv[])
 
 	
 	strcpy(output, argv[argc-1]);		/* copying the last argument to be the output-file */
+	
+	file_out = fopen(output, "w");
+	if (file_out == NULL)
+	{
+		fprintf(stdout, "error: couldn't open file '%s'\n\n", output);
+		exit(1);
+	}
+	
+	
 	
 	
 
