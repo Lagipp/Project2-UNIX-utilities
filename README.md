@@ -6,16 +6,16 @@ Project 2 of 3 of the practical work assignments for the course CT30A3370 Käytt
 The project consists of four small programs:
 
 my-cat:
-text
+concatenates the contents of the specified file(s)
 
 
 my-grep:
-text
+searches a phrase provided by the user from specified files(s) and returns all applicable words
 
 
 my-zip:
-text
+run-length-encodes a file/(files) into an output file
 
 
 my-unzip:
-text
+uncompresses a run-length-encoded file, best used alongside (and right after) my-zip!
