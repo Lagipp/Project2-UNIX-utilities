@@ -11,7 +11,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define MAX 256
+#define MAX 64
 
 
 char* fileToArray(char input[MAX])
@@ -38,7 +38,7 @@ char* fileToArray(char input[MAX])
 	}
 	
 	int q;
-	for (q = 0; ; q++)
+	for (q = 0; 1; q++)
 	{
 		int w;
 		
@@ -93,10 +93,10 @@ char* encode(char* source)
 	int runlen;
 	char count[MAX];
 	int length = strlen(source);
-	int a, b, c;
+	int a, b = 0, c;
 	
 	
-	char *dest = (char*)malloc(sizeof(char) * (length * 2 + 1));
+	char* dest = (char*)malloc(sizeof(char) * (length * 2 + 1));
 	
 	for (a = 0; a < length; a++)
 	{		
@@ -126,7 +126,7 @@ int main(int argc, char* argv[])
 	char input[MAX];
 	char output[MAX];
 	//FILE *file_in;
-	FILE *file_out;
+	FILE *file_out = NULL;
 	int g;
 	char *encoding;
 
@@ -148,7 +148,7 @@ int main(int argc, char* argv[])
 		exit(1);
 	}
 	
-	for (g = 1; g < (argc -1); g++)		/* looping until all files have been compressed */
+	for (g = 1; g < (argc-1); g++)		/* looping until all files have been compressed */
 	{
 		strcpy(input, argv[g]);
 		
@@ -168,8 +168,11 @@ int main(int argc, char* argv[])
 	}
 	
 	
-
+	fprintf(stdout, "-- program finished, the output can be found at '%s'\n", output);
 	fprintf(stdout, "== DEBUG: end of program\n\n");
+	
 	return 0;
 }
+
+
 
