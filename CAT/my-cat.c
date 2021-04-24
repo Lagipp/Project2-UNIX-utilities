@@ -4,6 +4,9 @@
  * Nimi ja opiskelijanro:	Miika Pynttäri, 0563090
  * Päivämäärä:			19.4.2021
  * Yhteistyö ja lähteet:	 
+ *
+ * - https://gist.github.com/pat36/d991eda0c270ed823a5d83c274c6157c
+ *
 */
 /*****************************************************************/
 
@@ -30,7 +33,7 @@ int main(int argc, char* argv[])
 	}
 	
 	
-	for ( (q = 1); (q < argc); q++ )
+	for (q = 1; q < argc; q++)	/* looping until all files have been concatenated */
 	{
 	
 		/* expanded from the source:  https://gist.github.com/pat36/d991eda0c270ed823a5d83c274c6157c */
@@ -40,7 +43,7 @@ int main(int argc, char* argv[])
 		file = fopen(argv[q], "r");
 		if (file == NULL)
 		{
-			fprintf(stdout, "\nmy-cat: cannot open file '%s'\n", filename);
+			fprintf(stdout, "my-cat: cannot open file '%s'\n", filename);
 			exit(1);
 		}
 
@@ -54,8 +57,10 @@ int main(int argc, char* argv[])
 		
 		fclose(file);
 		
-		fprintf(stdout, "--- EOF for file '%s'\n", filename);
+		fprintf(stdout, "--- EOF for file '%s'\n\n", filename);
 	}
 
 	return 0;
 }
+
+
