@@ -4,6 +4,11 @@
  * Nimi ja opiskelijanro:	Miika Pynttäri, 0563090
  * Päivämäärä:			20.4.2021
  * Yhteistyö ja lähteet:	
+ *
+ * - https://stackoverflow.com/questions/17504122/taking-a-string-as-input-and-storing-them-in-a-character-array-in-c/17504265
+ * - https://stackoverflow.com/questions/7251307/using-strcpy-with-a-string-array-in-c
+ * - https://www.codeproject.com/Questions/5268549/How-do-I-make-a-programme-in-C-which-mimic-the-gre
+ *
 */
 /*****************************************************************/
 
@@ -78,7 +83,7 @@ int main(int argc, char* argv[])
 		
 		/* PRINTING OUT THE FOUND WORDS */
 		
-		fprintf(stdout, "--- Printing out words with '%s' in them from stdin:\n", searchterm);
+		fprintf(stdout, "\n--- Printing out words with '%s' in them from stdin:\n", searchterm);
 		
 		for(u = 0; u < m; u++)
 		{
@@ -92,6 +97,7 @@ int main(int argc, char* argv[])
 	
 	if (argc > 2)
 	{
+	
 	/* when the searchterm and file(s) have been supplied */
 	
 	
@@ -127,7 +133,8 @@ int main(int argc, char* argv[])
 			}
 		
 			fclose(file);
-			printf("--- Found %d occurrences!\n\n", count);	
+			printf("--- Found %d occurrences!\n\n", count);	/* this line was just for debugging, but */
+										/* I kept it in since it's kind of cool */
 		}
 	}
 	return 0;
