@@ -22,7 +22,7 @@ uncompresses a run-length-encoded file, best used alongside (and right after) my
 
 --------------------------------------------------------------------------------------
 
-The programs are separated into their own files, with each file having their own textfiles for testing purposes.
+The programs are separated into their own folders, with each folder having their own textfiles for testing purposes.
 
 The programs require prompts as follows:
 
