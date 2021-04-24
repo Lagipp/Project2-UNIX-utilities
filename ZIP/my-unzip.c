@@ -4,6 +4,12 @@
  * Nimi ja opiskelijanro:	Miika Pynttäri, 0563090
  * Päivämäärä:			20.4.2021
  * Yhteistyö ja lähteet:	
+ * 
+ * - https://www.codeproject.com/Questions/771736/decompress-file-using-rle-cplusplus
+ * - https://www.programmingalgorithms.com/algorithm/rle-decompress/c/
+ * - https://www.cefns.nau.edu/~pek7/CS200/Project%203.pdf
+ *
+ *  (all sources were mainly glanced over while trying to emulate their core concepts into this code)
 */
 /*****************************************************************/
 
@@ -38,24 +44,23 @@ int main(int argc, char* argv[])
 	}
 
 
-	while ((x = fscanf(file, "%d%c", &integer, chr)) != EOF)
+	while ((x = fscanf(file, "%d%c", &integer, chr)) != EOF)	/* getting the desired syntax, "int char", e.g. "2a" "3b" */
 	{	
-		if (x != 2)
+		if (x != 2)		/* if the syntax is not correct */
 		{
-			fprintf(stdout, "error: input doesnt follow the proper syntax... \n\n");
+			fprintf(stdout, "ERROR: input doesnt follow the proper syntax... \n\n");
 			exit(1);
 		}		
 		
-		for (t = 0; t < integer; t++) 
-		{
+		for (t = 0; t < integer; t++) 	/* printing the characters of the RLE as many times */
+		{					/* as the integer in front of them, e.g. "3e" -> "eee" */
 			printf("%s", chr);
 		
 		}	
 	} 	
-
 	fclose(file);
+	fprintf(stdout, "\n");
 
-	fprintf(stdout, "\n== DEBUG: end of program\n\n");
 	return 0;
 }
 
